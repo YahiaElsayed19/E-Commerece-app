@@ -42,6 +42,8 @@ function SignupScreen({ navigation }) {
         try {
             const response = await Register(deboucedName, deboucedEmail, deboucedPassword, deboucedPhone)
             console.log(response);
+            // console.log(response.data.data.token);
+            // console.log(response.data.message);
         } catch (error) {
             console.log(error);
         }
