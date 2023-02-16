@@ -5,12 +5,24 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SignupScreen from './screens/SignupScreen';
 
+const Stack = createNativeStackNavigator();
+
 export default function App() {
   return (
-    <View style={styles.container}>
+    <>
       <StatusBar style="dark" />
-      <SignupScreen />
-    </View>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{
+          contentStyle: {
+            backgroundColor: "white"
+          }
+        }}>
+          <Stack.Screen name='Signup' component={SignupScreen} options={{
+            headerShown: false,
+          }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
 

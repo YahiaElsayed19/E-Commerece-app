@@ -29,8 +29,7 @@ function Input({
 export default Input;
 const styles = StyleSheet.create({
     inputContainer: {
-        marginHorizontal: 30,
-        marginVertical: 24,
+        marginTop: 24,
     },
     label: {
         fontWeight: "bold",
@@ -40,7 +39,7 @@ const styles = StyleSheet.create({
     textInput: {
         backgroundColor: Colors.white300,
         color: "black",
-        fontSize: 18,
+        fontSize: 16,
         borderRadius: 6,
         padding: 16,
         marginTop: 12,
