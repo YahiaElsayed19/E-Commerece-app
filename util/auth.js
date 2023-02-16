@@ -11,3 +11,10 @@ export const Register = function (name, email, password, phone) {
     });
     return response;
 };
+export const Login = function ( email, password) {
+    const response = axios.post(`${baseURL}login`, {
+        email,
+        password,
+    });
+    return response;
+};
