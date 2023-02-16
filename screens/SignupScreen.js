@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ScrollView, View, StyleSheet, Text } from "react-native";
 import { useDebounce } from 'use-debounce';
 
@@ -6,6 +6,7 @@ import { Register } from "../util/auth";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 import TextButton from "../components/UI/TextButton";
+import { AuthContext } from "../store/auth-context";
 
 function SignupScreen({ navigation }) {
     const [name, setName] = useState("");
@@ -20,7 +21,7 @@ function SignupScreen({ navigation }) {
     const [phone, setPhone] = useState("");
     const [deboucedPhone] = useDebounce(phone, 1000);
 
-
+    const authCtx = useContext(AuthContext)
     function nameHandler(enteredName) {
         setName(enteredName)
     }
@@ -42,7 +43,8 @@ function SignupScreen({ navigation }) {
         try {
             const response = await Register(deboucedName, deboucedEmail, deboucedPassword, deboucedPhone)
             console.log(response);
-            // console.log(response.data.data.token);
+            authCtx.setIdToken(response.data.data.token)
+            console.log(authCtx.idToken);
             // console.log(response.data.message);
         } catch (error) {
             console.log(error);

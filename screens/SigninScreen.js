@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { useDebounce } from "use-debounce";
 import { ScrollView, View, StyleSheet, Text } from "react-native";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 import TextButton from "../components/UI/TextButton";
 import { Login } from "../util/auth";
+import { AuthContext } from "../store/auth-context";
+
 
 function SigninScreen({ navigation }) {
     const [email, setEmail] = useState("");
@@ -12,6 +14,7 @@ function SigninScreen({ navigation }) {
 
     const [password, setPassword] = useState("");
     const [deboucedPassword] = useDebounce(password, 1000);
+    const authCtx = useContext(AuthContext)
 
     function emailHandler(enteredEmail) {
         setEmail(enteredEmail)
@@ -27,7 +30,8 @@ function SigninScreen({ navigation }) {
         try {
             const response = await Login(deboucedEmail, deboucedPassword)
             console.log(response);
-            // console.log(response.data.data.token);
+            authCtx.setIdToken(response.data.data.token)
+            console.log(authCtx.idToken);
             // console.log(response.data.message);
         } catch (error) {
             console.log(error);
