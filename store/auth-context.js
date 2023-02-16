@@ -1,7 +1,8 @@
 import { createContext, useState } from "react";
 
 export const AuthContext = createContext({
-    idToken: null,
+    idToken: "",
+    isAuthenticated: false,
     setIdToken: (idToken) => { },
     removeIdToken: (idToken) => { },
 })
@@ -18,6 +19,7 @@ function AuthProvider({ children }) {
     }
     const value = {
         idToken,
+        isAuthenticated: !!idToken,
         setIdToken: setIdTokenFn,
         removeIdToken: removeIdTokenFn,
     }
