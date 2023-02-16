@@ -1,13 +1,22 @@
 import { useState } from "react";
 import { ScrollView, View, StyleSheet, Text } from "react-native";
+import { useQuery } from 'react-query'
+
+import { Register } from "../util/auth";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 import TextButton from "../components/UI/TextButton";
 
 function SignupScreen({ navigation }) {
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+
+    function nameHandler(enteredName) {
+            setName(enteredName)
+            console.log(name);
+    }
     function emailHandler(enteredEmail) {
         setEmail(enteredEmail)
         console.log(email);
@@ -23,16 +32,23 @@ function SignupScreen({ navigation }) {
     function switchLoginHandler() {
         navigation.replace("SigninScreen");
     }
-    function signupHandler(email, password) {
 
+    function signupHandler() {
     }
     return (
         <ScrollView style={styles.scroll}>
             <View style={styles.screen}>
                 <Text style={styles.signup}>Sign up</Text>
                 <Input
+                    label="Full name"
+                    placeholder="your name"
+                    inputMode="text"
+                    secureTextEntry={false}
+                    onChangeText={nameHandler}
+                />
+                <Input
                     label="Email"
-                    placeholder="xxxxxxxx@xxxxx.xxx"
+                    placeholder="example@example.exa"
                     inputMode="email"
                     secureTextEntry={false}
                     onChangeText={emailHandler}
@@ -58,7 +74,7 @@ function SignupScreen({ navigation }) {
                     />
                 </View>
                 <View style={styles.button}>
-                    <Button title="Sign up" />
+                    <Button title="Sign up" onPress={signupHandler} />
                 </View>
             </View>
         </ScrollView>
