@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ScrollView, View, StyleSheet, Text } from "react-native";
-import { useQuery } from 'react-query'
 
 import { Register } from "../util/auth";
 import Button from "../components/UI/Button";

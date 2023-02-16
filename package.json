@@ -17,7 +17,8 @@
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
     "react-native": "0.70.5",
-    "react-query": "^3.39.3"
+    "react-query": "^3.39.3",
+    "use-debounce": "^9.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
