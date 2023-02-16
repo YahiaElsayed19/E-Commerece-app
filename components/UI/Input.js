@@ -7,6 +7,7 @@ function Input({
     placeholder,
     inputMode,
     secureTextEntry,
+    keyboardType
 }) {
     return (
         <View style={styles.inputContainer}>
@@ -21,6 +22,7 @@ function Input({
                 onFocus={onFocus}
                 inputMode={inputMode}
                 secureTextEntry={secureTextEntry}
+                keyboardType={keyboardType}
             />
         </View>
     );

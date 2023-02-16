@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ScrollView, View, StyleSheet, Text } from "react-native";
+import { useDebounce } from 'use-debounce';
 
 import { Register } from "../util/auth";
 import Button from "../components/UI/Button";
@@ -8,31 +9,42 @@ import TextButton from "../components/UI/TextButton";
 
 function SignupScreen({ navigation }) {
     const [name, setName] = useState("");
+    const [deboucedName] = useDebounce(name, 1000);
+
     const [email, setEmail] = useState("");
+    const [deboucedEmail] = useDebounce(email, 1000);
+
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [deboucedPassword] = useDebounce(password, 1000);
+
+    const [phone, setPhone] = useState("");
+    const [deboucedPhone] = useDebounce(phone, 1000);
+
 
     function nameHandler(enteredName) {
-            setName(enteredName)
-            console.log(name);
+        setName(enteredName)
     }
     function emailHandler(enteredEmail) {
         setEmail(enteredEmail)
-        console.log(email);
     }
     function passwordHandler(enteredPassword) {
         setPassword(enteredPassword)
-        console.log(password);
     }
-    function confirmPasswordHandler(enteredPassword) {
-        setConfirmPassword(enteredPassword)
-        console.log(confirmPassword);
+    function phoneHandler(enteredPhone) {
+        setPhone(enteredPhone)
     }
     function switchLoginHandler() {
         navigation.replace("SigninScreen");
     }
 
-    function signupHandler() {
+    async function signupHandler() {
+        console.log(deboucedName, deboucedEmail, deboucedPassword, deboucedPhone);
+        try {
+            const response = await Register(deboucedName, deboucedEmail, deboucedPassword, deboucedPhone)
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
     }
     return (
         <ScrollView style={styles.scroll}>
@@ -53,18 +65,18 @@ function SignupScreen({ navigation }) {
                     onChangeText={emailHandler}
                 />
                 <Input
+                    label="Phone number"
+                    placeholder=" 01XXXXXXXXX "
+                    keyboardType="number-pad"
+                    secureTextEntry={false}
+                    onChangeText={phoneHandler}
+                />
+                <Input
                     label="Password"
                     placeholder="password"
                     inputMode="text"
                     secureTextEntry={true}
                     onChangeText={passwordHandler}
-                />
-                <Input
-                    label=" Confirm password"
-                    placeholder=" Confirm password "
-                    inputMode="text"
-                    secureTextEntry={true}
-                    onChangeText={confirmPasswordHandler}
                 />
                 <View style={styles.textButton}>
                     <TextButton
