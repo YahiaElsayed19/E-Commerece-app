@@ -47,7 +47,7 @@ function SignupScreen({ navigation }) {
         try {
             const response = await Register(deboucedName, deboucedEmail, deboucedPassword, deboucedPhone)
             // console.log(response);
-            if (response.data.message === "تم التسجيل بنجاح") {
+            if (response.data.message === "Registration done successfully") {
                 authCtx.authenticate(response.data.data.token)
             } else {
                 Alert.alert("Authentication failed!", response.data.message)
