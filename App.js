@@ -10,7 +10,13 @@ import AuthProvider from './store/auth-context';
 import { AuthContext } from './store/auth-context';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppLoading from 'expo-app-loading';
+import ProfileScreen from './screens/ProfileScreen';
+import HomeScreen from './screens/HomeScreen';
+import FavoriteScreen from './screens/FavoriteScreen';
+import CartScreen from './screens/CartScreen';
+import ItemDetailsScreen from './screens/ItemDetailsScreen';
 const Stack = createNativeStackNavigator();
+const Bottom = createBottomTabNavigator()
 function AuthStack() {
   return (
     <Stack.Navigator screenOptions={{
@@ -24,11 +30,19 @@ function AuthStack() {
     </Stack.Navigator>
   )
 }
+function BottomNav() {
+  return <Bottom.Navigator>
+    <Bottom.Screen name='HomeScreen' component={HomeScreen} />
+    <Bottom.Screen name='FavoriteScreen' component={FavoriteScreen} />
+    <Bottom.Screen name='CartScreen' component={CartScreen} />
+    <Bottom.Screen name='ProfileScreen' component={ProfileScreen} />
+  </Bottom.Navigator>
+}
 function AuthenticatedStack() {
-  const authCtx = useContext(AuthContext)
-  return <View><Text>Logged in</Text>
-    <Button title='logout' onPress={authCtx.removeIdToken} />
-  </View>
+  return <Stack.Navigator>
+    <Stack.Screen name='MainAuthenticatedScreen' component={BottomNav} />
+    <Stack.Screen name='ItemDetailsScreen' component={ItemDetailsScreen} />
+  </Stack.Navigator>
 }
 function Navigation() {
   const authCtx = useContext(AuthContext);
