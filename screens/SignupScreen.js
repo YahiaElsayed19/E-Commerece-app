@@ -18,7 +18,7 @@ function SignupScreen({ navigation }) {
     const [deboucedEmail] = useDebounce(email, 1000);
 
     const [password, setPassword] = useState("");
-    const [deboucedPassword] = useDebounce(password, 1000);
+    const [deboucedPassword] = useDebounce(password, 500);
 
     const [phone, setPhone] = useState("");
     const [deboucedPhone] = useDebounce(phone, 1000);
