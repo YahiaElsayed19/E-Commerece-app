@@ -38,6 +38,8 @@ function BottomNav() {
   return (
     <Bottom.Navigator screenOptions={{
       tabBarShowLabel: false,
+      tabBarActiveTintColor: Colors.primary100,
+      tabBarInactiveTintColor: "black",
     }}>
       <Bottom.Screen
         name="HomeScreen"
