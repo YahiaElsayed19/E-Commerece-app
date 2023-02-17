@@ -15,7 +15,7 @@ function SigninScreen({ navigation }) {
     const [deboucedEmail] = useDebounce(email, 1000);
 
     const [password, setPassword] = useState("");
-    const [deboucedPassword] = useDebounce(password, 1000);
+    const [deboucedPassword] = useDebounce(password, 1500);
 
     const [isLoading, setIsLoading] = useState(false)
     function emailHandler(enteredEmail) {
