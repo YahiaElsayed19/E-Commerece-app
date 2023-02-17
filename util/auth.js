@@ -8,13 +8,21 @@ export const Register = function (name, email, password, phone) {
         email,
         password,
         phone,
+    }, {
+        headers: {
+            lang: "en",
+        }
     });
     return response;
 };
-export const Login = function ( email, password) {
+export const Login = function (email, password) {
     const response = axios.post(`${baseURL}login`, {
         email,
         password,
+    }, {
+        headers: {
+            lang: "en",
+        }
     });
     return response;
 };
