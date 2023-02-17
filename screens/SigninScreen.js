@@ -32,7 +32,7 @@ function SigninScreen({ navigation }) {
         setIsLoading(true)
         try {
             const response = await Login(deboucedEmail, deboucedPassword)
-            console.log(response);
+            // console.log(response);
             if (response.data.message === "Login done successfully") {
                 authCtx.authenticate(response.data.data.token)
             } else {
