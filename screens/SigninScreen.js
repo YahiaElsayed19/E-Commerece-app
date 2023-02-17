@@ -12,7 +12,7 @@ function SigninScreen({ navigation }) {
     const authCtx = useContext(AuthContext)
 
     const [email, setEmail] = useState("");
-    const [deboucedEmail] = useDebounce(email, 1000);
+    const [deboucedEmail] = useDebounce(email, 500);
 
     const [password, setPassword] = useState("");
     const [deboucedPassword] = useDebounce(password, 500);

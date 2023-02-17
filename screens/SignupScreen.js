@@ -12,16 +12,16 @@ function SignupScreen({ navigation }) {
     const authCtx = useContext(AuthContext)
 
     const [name, setName] = useState("");
-    const [deboucedName] = useDebounce(name, 1000);
+    const [deboucedName] = useDebounce(name, 500);
 
     const [email, setEmail] = useState("");
-    const [deboucedEmail] = useDebounce(email, 1000);
+    const [deboucedEmail] = useDebounce(email, 500);
 
     const [password, setPassword] = useState("");
     const [deboucedPassword] = useDebounce(password, 500);
 
     const [phone, setPhone] = useState("");
-    const [deboucedPhone] = useDebounce(phone, 1000);
+    const [deboucedPhone] = useDebounce(phone, 500);
 
     const [isLoading, setIsLoading] = useState(false)
 
