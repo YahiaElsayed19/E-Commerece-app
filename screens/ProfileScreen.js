@@ -3,9 +3,10 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import { AuthContext } from "../store/auth-context";
 import { getProfileData } from "../util/profile";
 import Button from "../components/UI/Button";
-import LoadingOverlay from '../components/UI/LoadingOverlay'
+import LoadingOverlay from "../components/UI/LoadingOverlay";
 import Colors from "../constants/Colors";
-function ProfileScreen() {
+import { Ionicons } from "@expo/vector-icons";
+function ProfileScreen({ navigation }) {
     const authCtx = useContext(AuthContext);
     const [profileData, setProfileData] = useState();
     const [isLoading, setIsLoading] = useState(true);
@@ -24,8 +25,19 @@ function ProfileScreen() {
         getProfile();
     }, []);
     function logoutHandler() {
-        authCtx.removeIdToken()
+        authCtx.removeIdToken();
     }
+    navigation.setOptions({
+        headerRight: ({ tintColor }) => (
+            <Ionicons
+                name="exit"
+                color={tintColor}
+                size={28}
+                onPress={logoutHandler}
+                style={{ marginRight: 16 }}
+            />
+        ),
+    });
     // console.log(profileData);
 
     if (isLoading) {
