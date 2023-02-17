@@ -56,7 +56,7 @@ function SignupScreen({ navigation }) {
                 <Text style={styles.signup}>Sign up</Text>
                 <Input
                     label="Full name"
-                    placeholder="your name"
+                    placeholder="enter your name"
                     inputMode="text"
                     secureTextEntry={false}
                     onChangeText={nameHandler}
