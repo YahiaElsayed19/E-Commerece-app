@@ -52,7 +52,7 @@ function SigninScreen({ navigation }) {
                 <Text style={styles.signup}>Welcome back !</Text>
                 <Input
                     label="Email"
-                    placeholder="example@example.exa"
+                    placeholder="example@example.example"
                     inputMode="email"
                     secureTextEntry={false}
                     onChangeText={emailHandler}
