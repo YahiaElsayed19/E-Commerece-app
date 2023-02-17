@@ -5,7 +5,7 @@ import { getProfileData } from "../../util/profile";
 import Button from "../UI/Button";
 import LoadingOverlay from "../UI/LoadingOverlay";
 import Colors from "../../constants/Colors";
-function PreviewProfile() {
+function PreviewProfile({onEditing}) {
     const authCtx = useContext(AuthContext);
     const [profileData, setProfileData] = useState();
     const [isLoading, setIsLoading] = useState(true);
@@ -53,7 +53,7 @@ function PreviewProfile() {
             </View>
             <View style={styles.buttons}>
                 <View style={styles.button}>
-                    <Button title="Edit" />
+                    <Button title="Edit" onPress={onEditing}/>
                 </View>
                 <View style={styles.button}>
                     <Button title="Log out" onPress={logoutHandler} />

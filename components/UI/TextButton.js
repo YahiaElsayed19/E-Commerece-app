@@ -1,8 +1,8 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import Colors from "../../constants/Colors";
-function TextButton({ title, onPress }) {
+function TextButton({ title, onPress, style }) {
     return <Pressable style={({ pressed }) => pressed && styles.pressed} onPress={onPress}>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={[styles.title, style]}>{title}</Text>
     </Pressable>
 }
 
@@ -14,6 +14,6 @@ const styles = StyleSheet.create({
     title: {
         color: Colors.primary100,
         fontSize: 16,
-        marginTop:8,
+        marginTop: 8,
     },
 });

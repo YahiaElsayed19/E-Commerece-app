@@ -7,7 +7,9 @@ function Input({
     placeholder,
     inputMode,
     secureTextEntry,
-    keyboardType
+    keyboardType,
+    value,
+    style
 }) {
     return (
         <View style={styles.inputContainer}>
@@ -15,7 +17,7 @@ function Input({
                 <Text style={styles.label}>{label}</Text>
             </View>
             <TextInput
-                style={styles.textInput}
+                style={[styles.textInput,style]}
                 placeholder={placeholder}
                 cursorColor={Colors.primary100}
                 onChangeText={onChangeText}
@@ -23,6 +25,7 @@ function Input({
                 inputMode={inputMode}
                 secureTextEntry={secureTextEntry}
                 keyboardType={keyboardType}
+                defaultValue={value}
             />
         </View>
     );
