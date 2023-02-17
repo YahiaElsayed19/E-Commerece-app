@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { ScrollView, View, StyleSheet, Text } from "react-native";
+import { ScrollView, View, StyleSheet, Text, Alert } from "react-native";
 import { useDebounce } from 'use-debounce';
 
 import { Register } from "../util/auth";
@@ -42,11 +42,12 @@ function SignupScreen({ navigation }) {
         // console.log(deboucedName, deboucedEmail, deboucedPassword, deboucedPhone);
         try {
             const response = await Register(deboucedName, deboucedEmail, deboucedPassword, deboucedPhone)
-            console.log(response);
+            // console.log(response);
             if (response.data.message === "تم التسجيل بنجاح") {
                 authCtx.authenticate(response.data.data.token)
             } else {
-                console.log(response.data.message);
+                Alert.alert("Authentication failed!", response.data.message)
+                // console.log(response.data.message);
             }
             // console.log(authCtx.idToken);
             // console.log(response.data.message);
@@ -66,18 +67,18 @@ function SignupScreen({ navigation }) {
                     onChangeText={nameHandler}
                 />
                 <Input
-                    label="Email"
-                    placeholder="example@example.exa"
-                    inputMode="email"
-                    secureTextEntry={false}
-                    onChangeText={emailHandler}
-                />
-                <Input
                     label="Phone number"
                     placeholder=" 01XXXXXXXXX "
                     keyboardType="number-pad"
                     secureTextEntry={false}
                     onChangeText={phoneHandler}
+                />
+                <Input
+                    label="Email"
+                    placeholder="example@example.exa"
+                    inputMode="email"
+                    secureTextEntry={false}
+                    onChangeText={emailHandler}
                 />
                 <Input
                     label="Password"

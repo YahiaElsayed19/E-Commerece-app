@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useDebounce } from "use-debounce";
-import { ScrollView, View, StyleSheet, Text } from "react-native";
+import { ScrollView, View, StyleSheet, Text, Alert } from "react-native";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 import TextButton from "../components/UI/TextButton";
@@ -29,11 +29,12 @@ function SigninScreen({ navigation }) {
         // console.log(deboucedEmail, deboucedPassword);
         try {
             const response = await Login(deboucedEmail, deboucedPassword)
-            console.log(response);
+            // console.log(response);
             if (response.data.message === "تم تسجيل الدخول بنجاح") {
                 authCtx.authenticate(response.data.data.token)
             } else {
-                console.log(response.data.message);
+                Alert.alert("Authentication failed!", response.data.message)
+                // console.log(response.data.message);
             }
             // console.log(authCtx.idToken);
             // console.log(response.data.message);
