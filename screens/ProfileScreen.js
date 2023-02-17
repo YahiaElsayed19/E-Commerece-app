@@ -1,16 +1,14 @@
 import { useState } from "react"
 import EditProfile from "../components/Profile/EditProfile"
 import PreviewProfile from "../components/Profile/PreviewProfile"
-function ProfileScreen() {
+function ProfileScreen({navigation}) {
     const [isEditing, setIsEditing] = useState(false)
     function editingHandler() {
         setIsEditing(true)
     }
-    function cancelHandler() {
-        setIsEditing(false)
-    }
+
     if (isEditing) {
-        return <EditProfile onCancel={cancelHandler}/>
+        return <EditProfile/>
     }
     return <PreviewProfile onEditing={editingHandler} />
 }

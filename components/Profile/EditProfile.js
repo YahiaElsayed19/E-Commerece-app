@@ -2,7 +2,7 @@ import { View, ScrollView, StyleSheet, ActivityIndicator } from "react-native"
 import Button from "../UI/Button";
 import TextButton from "../UI/TextButton";
 import Input from "../UI/Input";
-function EditProfile({ onCancel }) {
+function EditProfile() {
     return <ScrollView style={styles.scroll}>
         <View style={styles.screen}>
             <Input
@@ -21,7 +21,7 @@ function EditProfile({ onCancel }) {
             />
             <Input
                 label="Email"
-                placeholder="example@example.exa"
+                placeholder="example@example.example"
                 inputMode="email"
                 secureTextEntry={false}
                 style={styles.input}
@@ -36,7 +36,7 @@ function EditProfile({ onCancel }) {
             <View style={styles.button}>
                 <Button title="Save" />
             </View>
-            <TextButton title="Cancel" onPress={onCancel} style={styles.textButton} />
+            <TextButton title="Cancel" style={styles.textButton} />
         </View>
     </ScrollView>
 }
