@@ -29,8 +29,12 @@ function SigninScreen({ navigation }) {
         // console.log(deboucedEmail, deboucedPassword);
         try {
             const response = await Login(deboucedEmail, deboucedPassword)
-            // console.log(response);
-            authCtx.authenticate(response.data.data.token)
+            console.log(response);
+            if (response.data.message === "تم تسجيل الدخول بنجاح") {
+                authCtx.authenticate(response.data.data.token)
+            } else {
+                console.log(response.data.message);
+            }
             // console.log(authCtx.idToken);
             // console.log(response.data.message);
         } catch (error) {

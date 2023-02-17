@@ -42,8 +42,12 @@ function SignupScreen({ navigation }) {
         // console.log(deboucedName, deboucedEmail, deboucedPassword, deboucedPhone);
         try {
             const response = await Register(deboucedName, deboucedEmail, deboucedPassword, deboucedPhone)
-            // console.log(response);
-            authCtx.authenticate(response.data.data.token)
+            console.log(response);
+            if (response.data.message === "تم التسجيل بنجاح") {
+                authCtx.authenticate(response.data.data.token)
+            } else {
+                console.log(response.data.message);
+            }
             // console.log(authCtx.idToken);
             // console.log(response.data.message);
         } catch (error) {
