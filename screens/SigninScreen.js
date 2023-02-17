@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useDebounce } from "use-debounce";
-import { ScrollView, View, StyleSheet, Text, Alert } from "react-native";
+import { ScrollView, View, StyleSheet, Text, Alert, ActivityIndicator } from "react-native";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 import TextButton from "../components/UI/TextButton";
@@ -9,13 +9,15 @@ import { AuthContext } from "../store/auth-context";
 
 
 function SigninScreen({ navigation }) {
+    const authCtx = useContext(AuthContext)
+
     const [email, setEmail] = useState("");
     const [deboucedEmail] = useDebounce(email, 1000);
 
     const [password, setPassword] = useState("");
     const [deboucedPassword] = useDebounce(password, 1000);
-    const authCtx = useContext(AuthContext)
 
+    const [isLoading, setIsLoading] = useState(false)
     function emailHandler(enteredEmail) {
         setEmail(enteredEmail)
     }
@@ -27,6 +29,7 @@ function SigninScreen({ navigation }) {
     }
     async function loginHandler() {
         // console.log(deboucedEmail, deboucedPassword);
+        setIsLoading(true)
         try {
             const response = await Login(deboucedEmail, deboucedPassword)
             // console.log(response);
@@ -41,6 +44,7 @@ function SigninScreen({ navigation }) {
         } catch (error) {
             console.log(error);
         }
+        setIsLoading(false)
     }
     return (
         <ScrollView style={styles.scroll}>
@@ -67,6 +71,7 @@ function SigninScreen({ navigation }) {
                     <Button title="Sign in" onPress={loginHandler} />
                 </View>
             </View>
+            {isLoading && <ActivityIndicator size="large" color="black" />}
         </ScrollView>
     );
 }
