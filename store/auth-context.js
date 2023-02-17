@@ -3,15 +3,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export const AuthContext = createContext({
     idToken: "",
     isAuthenticated: false,
-    setIdToken: (idToken) => { },
-    removeIdToken: (idToken) => { },
+    authenticate: (idToken) => { },
+    removeIdToken: () => { },
 })
 
 import React from 'react'
 
 function AuthProvider({ children }) {
     const [idToken, setIdToken] = useState()
-    function setIdTokenFn(idToken) {
+    function authenticate(idToken) {
         setIdToken(idToken)
         AsyncStorage.setItem("token", idToken);
     }
@@ -22,7 +22,7 @@ function AuthProvider({ children }) {
     const value = {
         idToken,
         isAuthenticated: !!idToken,
-        setIdToken: setIdTokenFn,
+        authenticate,
         removeIdToken: removeIdTokenFn,
     }
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

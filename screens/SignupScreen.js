@@ -39,12 +39,12 @@ function SignupScreen({ navigation }) {
     }
 
     async function signupHandler() {
-        console.log(deboucedName, deboucedEmail, deboucedPassword, deboucedPhone);
+        // console.log(deboucedName, deboucedEmail, deboucedPassword, deboucedPhone);
         try {
             const response = await Register(deboucedName, deboucedEmail, deboucedPassword, deboucedPhone)
-            console.log(response);
-            authCtx.setIdToken(response.data.data.token)
-            console.log(authCtx.idToken);
+            // console.log(response);
+            authCtx.authenticate(response.data.data.token)
+            // console.log(authCtx.idToken);
             // console.log(response.data.message);
         } catch (error) {
             console.log(error);

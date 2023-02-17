@@ -1,4 +1,4 @@
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import { useDebounce } from "use-debounce";
 import { ScrollView, View, StyleSheet, Text } from "react-native";
 import Button from "../components/UI/Button";
@@ -26,12 +26,12 @@ function SigninScreen({ navigation }) {
         navigation.replace("SignupScreen")
     }
     async function loginHandler() {
-        console.log(deboucedEmail, deboucedPassword);
+        // console.log(deboucedEmail, deboucedPassword);
         try {
             const response = await Login(deboucedEmail, deboucedPassword)
-            console.log(response);
-            authCtx.setIdToken(response.data.data.token)
-            console.log(authCtx.idToken);
+            // console.log(response);
+            authCtx.authenticate(response.data.data.token)
+            // console.log(authCtx.idToken);
             // console.log(response.data.message);
         } catch (error) {
             console.log(error);
