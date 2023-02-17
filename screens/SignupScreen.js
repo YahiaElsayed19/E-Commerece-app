@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { ScrollView, View, StyleSheet, Text, Alert } from "react-native";
+import { ScrollView, View, StyleSheet, Text, Alert, ActivityIndicator } from "react-native";
 import { useDebounce } from 'use-debounce';
 
 import { Register } from "../util/auth";
@@ -9,6 +9,8 @@ import TextButton from "../components/UI/TextButton";
 import { AuthContext } from "../store/auth-context";
 
 function SignupScreen({ navigation }) {
+    const authCtx = useContext(AuthContext)
+
     const [name, setName] = useState("");
     const [deboucedName] = useDebounce(name, 1000);
 
@@ -21,7 +23,8 @@ function SignupScreen({ navigation }) {
     const [phone, setPhone] = useState("");
     const [deboucedPhone] = useDebounce(phone, 1000);
 
-    const authCtx = useContext(AuthContext)
+    const [isLoading, setIsLoading] = useState(false)
+
     function nameHandler(enteredName) {
         setName(enteredName)
     }
@@ -40,6 +43,7 @@ function SignupScreen({ navigation }) {
 
     async function signupHandler() {
         // console.log(deboucedName, deboucedEmail, deboucedPassword, deboucedPhone);
+        setIsLoading(true)
         try {
             const response = await Register(deboucedName, deboucedEmail, deboucedPassword, deboucedPhone)
             // console.log(response);
@@ -54,6 +58,7 @@ function SignupScreen({ navigation }) {
         } catch (error) {
             console.log(error);
         }
+        setIsLoading(false)
     }
     return (
         <ScrollView style={styles.scroll}>
@@ -97,6 +102,7 @@ function SignupScreen({ navigation }) {
                     <Button title="Sign up" onPress={signupHandler} />
                 </View>
             </View>
+            {isLoading && <ActivityIndicator size="large" color="black" />}
         </ScrollView>
     );
 }
@@ -110,13 +116,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         marginHorizontal: 30,
-        marginVertical: 60,
+        marginVertical: 40,
     },
     signup: {
         fontWeight: "bold",
         fontSize: 32,
         textAlign: "center",
-        marginBottom: 30,
+        marginBottom: 16,
     },
     textButton: {
         alignItems: "flex-end",
