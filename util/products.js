@@ -11,7 +11,7 @@ export const getProducts = function () {
     return response;
 };
 
-export const addToFav = function (Authorization, productId) {
+export const toggleFav = function (Authorization, productId) {
     const response = axios.post(
         `${baseURL}favorites`,
         {
@@ -26,7 +26,7 @@ export const addToFav = function (Authorization, productId) {
     );
     return response;
 };
-export const addToCart = function (Authorization, productId) {
+export const toggleCart = function (Authorization, productId) {
     const response = axios.post(
         `${baseURL}carts`,
         {

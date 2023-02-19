@@ -1,53 +1,53 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import Colors from "../../constants/Colors";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { addToCart, addToFav } from "../../util/products";
+import { toggleCart, toggleFav } from "../../util/products";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../store/auth-context";
-function Product({ name, price, image, id }) {
+function Product({ product }) {
     const [isFav, setIsFav] = useState(false);
     const [inCart, setInCart] = useState(false);
     const authCtx = useContext(AuthContext);
     async function addToFavoriteHandler() {
-        const response = await addToFav(authCtx.idToken, id);
+        const response = await toggleFav(authCtx.idToken, product.id);
         console.log(response);
         setIsFav(true);
     }
     async function removeFavoriteHandler() {
-        const response = await addToFav(authCtx.idToken, id);
+        const response = await toggleFav(authCtx.idToken, product.id);
         console.log(response);
         setIsFav(false);
     }
     async function addToCartHandler() {
-        const response = await addToCart(authCtx.idToken, id);
+        const response = await toggleCart(authCtx.idToken, product.id);
         console.log(response);
         setInCart(true);
     }
     async function removeCartHandler() {
-        const response = await addToCart(authCtx.idToken, id);
+        const response = await toggleCart(authCtx.idToken, product.id);
         console.log(response);
         setInCart(false);
     }
     return (
         <View style={styles.product}>
             <View>
-                <Image source={{ uri: image }} style={styles.image} />
+                <Image source={{ uri: product.image }} style={styles.image} />
             </View>
             <View style={styles.info}>
                 <View style={styles.elementContainer}>
                     <Text numberOfLines={1} style={styles.name}>
-                        {name}
+                        {product.name}
                     </Text>
                 </View>
                 <View style={styles.elementContainer}>
-                    <Text style={styles.price}>{price} L.E.</Text>
+                    <Text style={styles.price}>{product.price} L.E.</Text>
                 </View>
             </View>
             <View style={styles.buttons}>
                 {inCart ? (
-                    <MaterialCommunityIcons name="cart-check" size={36} onPress={removeCartHandler}/>
+                    <MaterialCommunityIcons name="cart-check" size={36} onPress={removeCartHandler} />
                 ) : (
-                    <MaterialCommunityIcons name="cart-arrow-down" size={36} onPress={addToCartHandler}/>
+                    <MaterialCommunityIcons name="cart-arrow-down" size={36} onPress={addToCartHandler} />
                 )}
                 {isFav ? (
                     <MaterialCommunityIcons
