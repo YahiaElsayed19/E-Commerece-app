@@ -85,13 +85,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         marginHorizontal: 30,
-        marginVertical: 60,
     },
     signup: {
         fontWeight: "bold",
         fontSize: 32,
         textAlign: "center",
-        marginBottom: 16,
+        marginVertical: 16,
     },
     textButton: {
         alignItems: "flex-end",

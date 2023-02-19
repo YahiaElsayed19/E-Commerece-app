@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 32,
         textAlign: "center",
-        marginBottom: 16,
+        marginVertical: 16,
     },
     textButton: {
         alignItems: "flex-end",
