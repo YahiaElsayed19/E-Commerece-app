@@ -47,7 +47,7 @@ function SigninScreen({ navigation }) {
         setIsLoading(false)
     }
     return (
-        <ScrollView style={styles.scroll}>
+        <ScrollView style={styles.scroll} contentContainerStyle={{flexGrow:1,justifyContent:"center"}}>
             <View style={styles.screen}>
                 <Text style={styles.signup}>Welcome back !</Text>
                 <Input
@@ -79,7 +79,7 @@ function SigninScreen({ navigation }) {
 export default SigninScreen;
 const styles = StyleSheet.create({
     scroll: {
-        marginVertical: 28,
+        marginVertical: 30,
     },
     screen: {
         flex: 1,
