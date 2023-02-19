@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
 import { getProducts } from "../util/products";
 function HomeScreen() {
-  const { data, isLoading } = useQuery("GetProducts", () => getProducts(44));
+  const { data, isLoading } = useQuery("GetProducts", () => getProducts());
   // console.log(data.data.data.data[0]);
   const products = data?.data.data.data;
   console.log(products);
