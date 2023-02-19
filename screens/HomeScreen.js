@@ -12,7 +12,7 @@ function HomeScreen() {
     return <LoadingOverlay />
   }
   function renderProduct(itemData) {
-    return <Product name={itemData.item.name} price={itemData.item.price} image={itemData.item.image} />
+    return <Product name={itemData.item.name} price={itemData.item.price} image={itemData.item.image} id={itemData.item.id}/>
   }
   return (
     <View>

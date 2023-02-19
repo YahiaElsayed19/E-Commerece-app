@@ -1,6 +1,22 @@
 import { View, Text, Image, StyleSheet } from "react-native";
-import Colors from '../../constants/Colors'
-function Product({ name, price, image }) {
+import Colors from "../../constants/Colors";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { addToFav } from "../../util/products";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../store/auth-context";
+function Product({ name, price, image, id }) {
+    const [isFav, setIsFav] = useState(false);
+    const authCtx = useContext(AuthContext);
+    async function addToFavoriteHandler() {
+        const response = await addToFav(authCtx.idToken, id);
+        console.log(response);
+        setIsFav(true);
+    }
+    async function removeFavoriteHandler() {
+        const response = await addToFav(authCtx.idToken, id);
+        console.log(response);
+        setIsFav(false);
+    }
     return (
         <View style={styles.product}>
             <View>
@@ -8,11 +24,31 @@ function Product({ name, price, image }) {
             </View>
             <View style={styles.info}>
                 <View style={styles.elementContainer}>
-                    <Text numberOfLines={2} style={styles.name}>{name}</Text>
+                    <Text numberOfLines={1} style={styles.name}>
+                        {name}
+                    </Text>
                 </View>
                 <View style={styles.elementContainer}>
                     <Text style={styles.price}>{price} L.E.</Text>
                 </View>
+            </View>
+            <View style={styles.buttons}>
+                <MaterialCommunityIcons name="cart-arrow-down" size={36} />
+                {isFav ? (
+                    <MaterialCommunityIcons
+                        name="heart"
+                        size={36}
+                        color="red"
+                        onPress={removeFavoriteHandler}
+                    />
+                ) : (
+                    <MaterialCommunityIcons
+                        name="heart-outline"
+                        size={36}
+                        color="red"
+                        onPress={addToFavoriteHandler}
+                    />
+                )}
             </View>
         </View>
     );
@@ -22,7 +58,7 @@ export default Product;
 const styles = StyleSheet.create({
     product: {
         flex: 1,
-        padding:8,
+        padding: 8,
         margin: 12,
         backgroundColor: "white",
         overflow: "hidden",
@@ -32,7 +68,7 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 150,
     },
-    info:{
+    info: {
         justifyContent: "center",
         alignItems: "center",
     },
@@ -45,5 +81,10 @@ const styles = StyleSheet.create({
     price: {
         fontWeight: "bold",
         color: Colors.primary100,
+    },
+    buttons: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+        marginTop: 12,
     },
 });
