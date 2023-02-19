@@ -2,10 +2,11 @@ import axios from "axios";
 
 const baseURL = "https://student.valuxapps.com/api/";
 
-export const getProducts = function () {
+export const getProducts = function (Authorization) {
     const response = axios.get(`${baseURL}products?category_id`, {
         headers: {
             lang: "en",
+            Authorization:Authorization
         },
     });
     return response;

@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../store/auth-context";
 function Product({ product }) {
     const [isFav, setIsFav] = useState(product["in_favorites"]);
-    const [inCart, setInCart] = useState(product["cart"]);
+    const [inCart, setInCart] = useState(product["in_cart"]);
     const authCtx = useContext(AuthContext);
     async function addToFavoriteHandler() {
         const response = await toggleFav(authCtx.idToken, product.id);
