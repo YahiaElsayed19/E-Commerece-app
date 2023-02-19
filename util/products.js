@@ -15,20 +15,23 @@ export const toggleFav = function (Authorization, productId) {
     const response = axios.post(
         `${baseURL}favorites`,
         {
+            "product_id": productId,
+        },
+        {
             headers: {
                 Authorization: Authorization,
                 lang: "en",
             },
         },
-        {
-            "product_id": productId,
-        }
     );
     return response;
 };
 export const toggleCart = function (Authorization, productId) {
     const response = axios.post(
         `${baseURL}carts`,
+        {
+            "product_id": productId,
+        },
         {
             headers: {
                 Authorization: Authorization,
