@@ -1,11 +1,12 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import Colors from "../../constants/Colors";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { addToFav } from "../../util/products";
+import { addToCart, addToFav } from "../../util/products";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../store/auth-context";
 function Product({ name, price, image, id }) {
     const [isFav, setIsFav] = useState(false);
+    const [inCart, setInCart] = useState(false);
     const authCtx = useContext(AuthContext);
     async function addToFavoriteHandler() {
         const response = await addToFav(authCtx.idToken, id);
@@ -16,6 +17,16 @@ function Product({ name, price, image, id }) {
         const response = await addToFav(authCtx.idToken, id);
         console.log(response);
         setIsFav(false);
+    }
+    async function addToCartHandler() {
+        const response = await addToCart(authCtx.idToken, id);
+        console.log(response);
+        setInCart(true);
+    }
+    async function removeCartHandler() {
+        const response = await addToCart(authCtx.idToken, id);
+        console.log(response);
+        setInCart(false);
     }
     return (
         <View style={styles.product}>
@@ -33,7 +44,11 @@ function Product({ name, price, image, id }) {
                 </View>
             </View>
             <View style={styles.buttons}>
-                <MaterialCommunityIcons name="cart-arrow-down" size={36} />
+                {inCart ? (
+                    <MaterialCommunityIcons name="cart-check" size={36} onPress={removeCartHandler}/>
+                ) : (
+                    <MaterialCommunityIcons name="cart-arrow-down" size={36} onPress={addToCartHandler}/>
+                )}
                 {isFav ? (
                     <MaterialCommunityIcons
                         name="heart"

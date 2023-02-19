@@ -26,3 +26,18 @@ export const addToFav = function (Authorization, productId) {
     );
     return response;
 };
+export const addToCart = function (Authorization, productId) {
+    const response = axios.post(
+        `${baseURL}carts`,
+        {
+            headers: {
+                Authorization: Authorization,
+                lang: "en",
+            },
+        },
+        {
+            "product_id": productId,
+        }
+    );
+    return response;
+};
