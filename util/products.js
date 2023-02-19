@@ -26,12 +26,39 @@ export const toggleFav = function (Authorization, productId) {
     );
     return response;
 };
+export const getFav = function (Authorization, productId) {
+    const response = axios.get(
+        `${baseURL}favorites`,
+        {
+            headers: {
+                Authorization: Authorization,
+                lang: "en",
+            },
+        },
+    );
+    return response;
+};
 export const toggleCart = function (Authorization, productId) {
     const response = axios.post(
         `${baseURL}carts`,
         {
             "product_id": productId,
         },
+        {
+            headers: {
+                Authorization: Authorization,
+                lang: "en",
+            },
+        },
+        {
+            "product_id": productId,
+        }
+    );
+    return response;
+};
+export const getCart = function (Authorization, productId) {
+    const response = axios.get(
+        `${baseURL}carts`,
         {
             headers: {
                 Authorization: Authorization,

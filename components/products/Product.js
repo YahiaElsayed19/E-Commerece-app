@@ -5,27 +5,23 @@ import { toggleCart, toggleFav } from "../../util/products";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../store/auth-context";
 function Product({ product }) {
-    const [isFav, setIsFav] = useState(false);
-    const [inCart, setInCart] = useState(false);
+    const [isFav, setIsFav] = useState(product["in_favorites"]);
+    const [inCart, setInCart] = useState(product["cart"]);
     const authCtx = useContext(AuthContext);
     async function addToFavoriteHandler() {
         const response = await toggleFav(authCtx.idToken, product.id);
-        console.log(response);
         setIsFav(true);
     }
     async function removeFavoriteHandler() {
         const response = await toggleFav(authCtx.idToken, product.id);
-        console.log(response);
         setIsFav(false);
     }
     async function addToCartHandler() {
         const response = await toggleCart(authCtx.idToken, product.id);
-        console.log(response);
         setInCart(true);
     }
     async function removeCartHandler() {
         const response = await toggleCart(authCtx.idToken, product.id);
-        console.log(response);
         setInCart(false);
     }
     return (
