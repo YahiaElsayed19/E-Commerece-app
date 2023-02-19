@@ -4,7 +4,8 @@ import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import SignupScreen from "./screens/SignupScreen";
 import SigninScreen from "./screens/SigninScreen";
 import AuthProvider from "./store/auth-context";
@@ -35,18 +36,23 @@ function AuthStack() {
   );
 }
 function BottomNav() {
+  const authCtx = useContext(AuthContext);
   return (
-    <Bottom.Navigator screenOptions={{
-      tabBarShowLabel: false,
-      tabBarActiveTintColor: Colors.primary100,
-      tabBarInactiveTintColor: "black",
-    }}>
+    <Bottom.Navigator
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: Colors.primary100,
+        tabBarInactiveTintColor: "black",
+      }}
+    >
       <Bottom.Screen
         name="HomeScreen"
         component={HomeScreen}
         options={{
           title: "Home",
-          tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="shopping" color={color} size={size} />
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="shopping" color={color} size={size} />
+          ),
         }}
       />
       <Bottom.Screen
@@ -54,7 +60,9 @@ function BottomNav() {
         component={FavoriteScreen}
         options={{
           title: "Favorite",
-          tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="heart" color={color} size={size} />
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="heart" color={color} size={size} />
+          ),
         }}
       />
       <Bottom.Screen
@@ -62,7 +70,9 @@ function BottomNav() {
         component={CartScreen}
         options={{
           title: "Cart",
-          tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="cart" color={color} size={size} />
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="cart" color={color} size={size} />
+          ),
         }}
       />
       <Bottom.Screen
@@ -70,7 +80,18 @@ function BottomNav() {
         component={ProfileScreen}
         options={{
           title: "Profile",
-          tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="account" color={color} size={size} />
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="account" color={color} size={size} />
+          ),
+          headerRight: ({ color }) => (
+            <Ionicons
+              name="exit"
+              color={color}
+              size={28}
+              style={{ marginRight: 10 }}
+              onPress={authCtx.logout}
+            />
+          ),
         }}
       />
     </Bottom.Navigator>

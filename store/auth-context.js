@@ -4,7 +4,7 @@ export const AuthContext = createContext({
     idToken: "",
     isAuthenticated: false,
     authenticate: (idToken) => { },
-    removeIdToken: () => { },
+    logout: () => { },
 })
 
 import React from 'react'
@@ -15,7 +15,7 @@ function AuthProvider({ children }) {
         setIdToken(idToken)
         AsyncStorage.setItem("token", idToken);
     }
-    function removeIdTokenFn() {
+    function logout() {
         setIdToken(null)
         AsyncStorage.removeItem('token')
     }
@@ -23,7 +23,7 @@ function AuthProvider({ children }) {
         idToken,
         isAuthenticated: !!idToken,
         authenticate,
-        removeIdToken: removeIdTokenFn,
+        logout,
     }
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
