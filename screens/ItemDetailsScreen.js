@@ -1,7 +1,9 @@
-import React from 'react'
+import { View, Text } from "react-native"
 
 function ItemDetailsScreen() {
-    return
+    return <View>
+    <Text> Screen</Text>
+</View>
 }
 
 export default ItemDetailsScreen
