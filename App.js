@@ -18,8 +18,11 @@ import FavoriteScreen from "./screens/FavoriteScreen";
 import CartScreen from "./screens/CartScreen";
 import ItemDetailsScreen from "./screens/ItemDetailsScreen";
 import Colors from "./constants/Colors";
+import { QueryClient, QueryClientProvider } from "react-query";
 const Stack = createNativeStackNavigator();
 const Bottom = createBottomTabNavigator();
+const queryClient = new QueryClient();
+
 function AuthStack() {
   return (
     <Stack.Navigator
@@ -139,8 +142,10 @@ function Root() {
 export default function App() {
   return (
     <AuthProvider>
-      <StatusBar style="dark" />
-      <Root />
+      <QueryClientProvider client={queryClient}>
+        <StatusBar style="dark" />
+        <Root />
+      </QueryClientProvider>
     </AuthProvider>
   );
 }
