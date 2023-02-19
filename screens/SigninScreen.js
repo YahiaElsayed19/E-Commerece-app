@@ -70,8 +70,8 @@ function SigninScreen({ navigation }) {
                 <View style={styles.button}>
                     <Button title="Sign in" onPress={loginHandler} />
                 </View>
-            </View>
             {isLoading && <ActivityIndicator size="large" color="black" />}
+            </View>
         </ScrollView>
     );
 }
@@ -98,5 +98,6 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: "center",
+        marginBottom:16,
     },
 })

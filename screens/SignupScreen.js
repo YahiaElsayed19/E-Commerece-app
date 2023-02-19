@@ -61,7 +61,7 @@ function SignupScreen({ navigation }) {
         setIsLoading(false)
     }
     return (
-        <ScrollView style={styles.scroll} contentContainerStyle={{flexGrow:1,justifyContent:"center"}}>
+        <ScrollView style={styles.scroll} contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}>
             <View style={styles.screen}>
                 <Text style={styles.signup}>Sign up</Text>
                 <Input
@@ -101,8 +101,8 @@ function SignupScreen({ navigation }) {
                 <View style={styles.button}>
                     <Button title="Sign up" onPress={signupHandler} />
                 </View>
+                {isLoading && <ActivityIndicator size="large" color="black" />}
             </View>
-            {isLoading && <ActivityIndicator size="large" color="black" />}
         </ScrollView>
     );
 }
@@ -128,5 +128,6 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: "center",
+        marginBottom: 16,
     },
 });
