@@ -103,13 +103,11 @@ function BottomNav() {
 }
 function AuthenticatedStack() {
   return (
-    <Stack.Navigator
-      screenOptions={{
+    <Stack.Navigator>
+      <Stack.Screen name="MainAuthenticatedScreen" component={BottomNav} options={{
         headerShown: false,
-      }}
-    >
-      <Stack.Screen name="MainAuthenticatedScreen" component={BottomNav} />
-      <Stack.Screen name="ProductDetailsScreen" component={ProductDetailsScreen} />
+      }} />
+      <Stack.Screen name="ProductDetailsScreen" component={ProductDetailsScreen} options={{ title: "Product Details" }} />
     </Stack.Navigator>
   );
 }

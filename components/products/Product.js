@@ -4,6 +4,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { toggleCart, toggleFav } from "../../util/products";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../store/auth-context";
+import { useNavigation } from "@react-navigation/native";
 function Product({ product, inFav }) {
     const [isFav, setIsFav] = useState(inFav ? inFav : product["in_favorites"]);
     const [inCart, setInCart] = useState(product["in_cart"]);
@@ -24,9 +25,13 @@ function Product({ product, inFav }) {
         const response = await toggleCart(authCtx.idToken, product.id);
         setInCart(false);
     }
+    const navigation = useNavigation()
+    function navigateToProductDetails() {
+        navigation.navigate("ProductDetailsScreen", { product:product })
+    }
     return (
         <View style={styles.product}>
-            <Pressable style={({pressed}) => pressed && styles.pressed}>
+            <Pressable style={({ pressed }) => pressed && styles.pressed} onPress={navigateToProductDetails}>
                 <View>
                     <Image source={{ uri: product.image }} style={styles.image} />
                 </View>
@@ -76,7 +81,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         overflow: "hidden",
         borderRadius: 12,
-        elevation:2,
+        elevation: 2,
     },
     pressed: {
         opacity: 0.5,
