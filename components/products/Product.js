@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     price: {
         fontWeight: "bold",
         color: Colors.primary100,
+        fontStyle: "italic",
     },
     buttons: {
         flexDirection: "row",
