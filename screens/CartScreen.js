@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
         borderRadius:6,
         flexDirection:"row",
         justifyContent:"space-between",
+        elevation:2,
     },
     title: {
         color:Colors.primary100,

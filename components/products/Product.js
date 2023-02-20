@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import Colors from "../../constants/Colors";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { toggleCart, toggleFav } from "../../util/products";
@@ -26,41 +26,43 @@ function Product({ product, inFav }) {
     }
     return (
         <View style={styles.product}>
-            <View>
-                <Image source={{ uri: product.image }} style={styles.image} />
-            </View>
-            <View style={styles.info}>
-                <View style={styles.elementContainer}>
-                    <Text numberOfLines={1} style={styles.name}>
-                        {product.name}
-                    </Text>
+            <Pressable style={({pressed}) => pressed && styles.pressed}>
+                <View>
+                    <Image source={{ uri: product.image }} style={styles.image} />
                 </View>
-                <View style={styles.elementContainer}>
-                    <Text style={styles.price}>{product.price} L.E.</Text>
+                <View style={styles.info}>
+                    <View style={styles.elementContainer}>
+                        <Text numberOfLines={1} style={styles.name}>
+                            {product.name}
+                        </Text>
+                    </View>
+                    <View style={styles.elementContainer}>
+                        <Text style={styles.price}>{product.price} L.E.</Text>
+                    </View>
                 </View>
-            </View>
-            <View style={styles.buttons}>
-                {inCart ? (
-                    <MaterialCommunityIcons name="cart-check" size={36} onPress={removeCartHandler} />
-                ) : (
-                    <MaterialCommunityIcons name="cart-arrow-down" size={36} onPress={addToCartHandler} />
-                )}
-                {isFav ? (
-                    <MaterialCommunityIcons
-                        name="heart"
-                        size={36}
-                        color="red"
-                        onPress={removeFavoriteHandler}
-                    />
-                ) : (
-                    <MaterialCommunityIcons
-                        name="heart-outline"
-                        size={36}
-                        color="red"
-                        onPress={addToFavoriteHandler}
-                    />
-                )}
-            </View>
+                <View style={styles.buttons}>
+                    {inCart ? (
+                        <MaterialCommunityIcons name="cart-check" size={36} onPress={removeCartHandler} />
+                    ) : (
+                        <MaterialCommunityIcons name="cart-arrow-down" size={36} onPress={addToCartHandler} />
+                    )}
+                    {isFav ? (
+                        <MaterialCommunityIcons
+                            name="heart"
+                            size={36}
+                            color="red"
+                            onPress={removeFavoriteHandler}
+                        />
+                    ) : (
+                        <MaterialCommunityIcons
+                            name="heart-outline"
+                            size={36}
+                            color="red"
+                            onPress={addToFavoriteHandler}
+                        />
+                    )}
+                </View>
+            </Pressable>
         </View>
     );
 }
@@ -74,6 +76,10 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         overflow: "hidden",
         borderRadius: 12,
+        elevation:2,
+    },
+    pressed: {
+        opacity: 0.5,
     },
     image: {
         width: "100%",
