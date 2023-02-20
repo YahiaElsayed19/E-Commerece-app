@@ -9,7 +9,7 @@ import { useIsFocused } from "@react-navigation/native";
 function FavoriteScreen() {
   const isFocused = useIsFocused();
   const authCtx = useContext(AuthContext);
-  const { data, isLoading, refetch } = useQuery("GetFavProducts", () =>
+  const { data, isLoading, refetch,isRefetching } = useQuery("GetFavProducts", () =>
     getFav(authCtx.idToken)
   );
   // console.log(data.data.data.data[0]);
@@ -26,7 +26,9 @@ function FavoriteScreen() {
   if (isLoading) {
     return <LoadingOverlay />;
   }
-
+  if (isRefetching) {
+    return <LoadingOverlay />
+  }
   function renderProduct(itemData) {
     return <Product product={itemData.item} inFav={true} />;
   }
