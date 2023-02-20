@@ -1,9 +1,9 @@
-import { Animated, FlatList, StyleSheet, Text, View } from 'react-native';
+import { Animated, FlatList, StyleSheet, Text, View, ScrollView } from 'react-native';
 import React, { useRef, useState } from 'react';
 import SlideItem from './SlideItem';
 import Pagination from './Pagination';
 
-const Slider = ({slides}) => {
+const Slider = ({ slides }) => {
     const [index, setIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
 
@@ -35,17 +35,16 @@ const Slider = ({slides}) => {
 
     return (
         <View>
-            <FlatList
-                data={slides}
-                renderItem={(itemData ) => <SlideItem item={itemData.item} />}
-                horizontal
-                pagingEnabled
+            <ScrollView
+                horizontal={true}
+                pagingEnabled={true}
                 snapToAlignment="center"
                 showsHorizontalScrollIndicator={false}
                 onScroll={handleOnScroll}
                 onViewableItemsChanged={handleOnViewableItemsChanged}
-                viewabilityConfig={viewabilityConfig}
-            />
+                viewabilityConfig={viewabilityConfig}>
+                {slides.map((slide) => <SlideItem key={slide} item={slide}/>)}
+            </ScrollView>
             <Pagination data={slides} scrollX={scrollX} index={index} />
         </View>
     );

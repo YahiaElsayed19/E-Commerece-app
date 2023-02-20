@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         height:300,
     },
     image: {
-        height:350,
+        height:300,
         width: '100%',
     },
 });
