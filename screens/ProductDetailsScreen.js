@@ -1,9 +1,9 @@
 import { View, Text } from "react-native"
 
-function ItemDetailsScreen() {
+function ProductDetailsScreen() {
     return <View>
     <Text> Screen</Text>
 </View>
 }
 
-export default ItemDetailsScreen
+export default ProductDetailsScreen

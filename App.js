@@ -17,7 +17,7 @@ import HomeScreen from "./screens/HomeScreen";
 import FavoriteScreen from "./screens/FavoriteScreen";
 import FavouriteScreen from "./screens/FavouriteScreen";
 import CartScreen from "./screens/CartScreen";
-import ItemDetailsScreen from "./screens/ItemDetailsScreen";
+import ProductDetailsScreen from "./screens/ProductDetailsScreen";
 import Colors from "./constants/Colors";
 import { QueryClient, QueryClientProvider } from "react-query";
 const Stack = createNativeStackNavigator();
@@ -109,7 +109,7 @@ function AuthenticatedStack() {
       }}
     >
       <Stack.Screen name="MainAuthenticatedScreen" component={BottomNav} />
-      <Stack.Screen name="ItemDetailsScreen" component={ItemDetailsScreen} />
+      <Stack.Screen name="ProductDetailsScreen" component={ProductDetailsScreen} />
     </Stack.Navigator>
   );
 }
