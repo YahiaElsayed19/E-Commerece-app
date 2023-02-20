@@ -13,12 +13,12 @@ function FavoriteScreen() {
   for (let i = 0; i < data?.data.data.data.length; i++) {
     products.push(data?.data.data.data[i].product)
   }
-  console.log(products);
+  // console.log(products);
   if (isLoading) {
     return <LoadingOverlay />
   }
   function renderProduct(itemData) {
-    return <Product product={itemData.item} />
+    return <Product product={itemData.item} inFav={true}/>
   }
   return (
     <View>

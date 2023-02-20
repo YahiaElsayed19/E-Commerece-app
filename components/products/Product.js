@@ -4,8 +4,8 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { toggleCart, toggleFav } from "../../util/products";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../store/auth-context";
-function Product({ product }) {
-    const [isFav, setIsFav] = useState(product["in_favorites"]);
+function Product({ product, inFav }) {
+    const [isFav, setIsFav] = useState(inFav ? inFav : product["in_favorites"]);
     const [inCart, setInCart] = useState(product["in_cart"]);
     const authCtx = useContext(AuthContext);
     async function addToFavoriteHandler() {
