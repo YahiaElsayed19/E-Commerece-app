@@ -15,6 +15,7 @@ import AppLoading from "expo-app-loading";
 import ProfileScreen from "./screens/ProfileScreen";
 import HomeScreen from "./screens/HomeScreen";
 import FavoriteScreen from "./screens/FavoriteScreen";
+import FavouriteScreen from "./screens/FavouriteScreen";
 import CartScreen from "./screens/CartScreen";
 import ItemDetailsScreen from "./screens/ItemDetailsScreen";
 import Colors from "./constants/Colors";
@@ -59,8 +60,8 @@ function BottomNav() {
         }}
       />
       <Bottom.Screen
-        name="FavoriteScreen"
-        component={FavoriteScreen}
+        name="FavouriteScreen"
+        component={FavouriteScreen}
         options={{
           title: "Favorite",
           tabBarIcon: ({ color, size }) => (
