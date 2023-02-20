@@ -26,7 +26,7 @@ function CartScreen() {
         products.push(data.data.data["cart_items"][i].product);
     }
 
-    console.log(products);  
+    // console.log(products);  
     if (isLoading) {
         return <LoadingOverlay />;
     }
