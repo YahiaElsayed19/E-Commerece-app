@@ -10,8 +10,8 @@ import { useIsFocused } from "@react-navigation/native";
 function CartScreen() {
     const isFocused = useIsFocused();
     const authCtx = useContext(AuthContext);
-    const { data, isLoading, refetch, isRefetching, isFetchedAfterMount } = useQuery(
-        "GetProducts",
+    const { data, isLoading, refetch, isRefetching } = useQuery(
+        "GetCartProducts",
         () => getCart(authCtx.idToken)
     );
     // console.log(data.data.data["cart_items"]);

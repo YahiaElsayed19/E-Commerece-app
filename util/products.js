@@ -27,7 +27,7 @@ export const toggleFav = function (Authorization, productId) {
     );
     return response;
 };
-export const getFav = function (Authorization, productId) {
+export const getFav = function (Authorization) {
     const response = axios.get(
         `${baseURL}favorites`,
         {
@@ -57,7 +57,7 @@ export const toggleCart = function (Authorization, productId) {
     );
     return response;
 };
-export const getCart = function (Authorization, productId) {
+export const getCart = function (Authorization) {
     const response = axios.get(
         `${baseURL}carts`,
         {
@@ -66,9 +66,6 @@ export const getCart = function (Authorization, productId) {
                 lang: "en",
             },
         },
-        {
-            "product_id": productId,
-        }
     );
     return response;
 };
