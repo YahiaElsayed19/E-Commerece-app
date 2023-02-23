@@ -5,6 +5,7 @@ import { toggleCart, toggleFav } from "../../util/products";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../store/auth-context";
 import { useNavigation } from "@react-navigation/native";
+import Button from "../UI/Button";
 function Product({ product, inFav }) {
     const [isFav, setIsFav] = useState(inFav ? inFav : product["in_favorites"]);
     const [inCart, setInCart] = useState(product["in_cart"]);
@@ -27,7 +28,7 @@ function Product({ product, inFav }) {
     }
     const navigation = useNavigation()
     function navigateToProductDetails() {
-        navigation.navigate("ProductDetailsScreen", { product:product })
+        navigation.navigate("ProductDetailsScreen", { product: product })
     }
     return (
         <View style={styles.product}>
@@ -45,24 +46,27 @@ function Product({ product, inFav }) {
                         <Text style={styles.price}>{product.price} L.E.</Text>
                     </View>
                 </View>
-                <View style={styles.buttons}>
+                <View style={styles.cartContainer}>
                     {inCart ? (
-                        <MaterialCommunityIcons name="cart-check" size={36} onPress={removeCartHandler} />
+                        <MaterialCommunityIcons name="cart-check" size={32} onPress={removeCartHandler} />
                     ) : (
-                        <MaterialCommunityIcons name="cart-arrow-down" size={36} onPress={addToCartHandler} />
+                        <MaterialCommunityIcons name="cart-arrow-down" size={32} onPress={addToCartHandler} />
                     )}
+                </View>
+                <View style={styles.favContainer}
+                >
                     {isFav ? (
                         <MaterialCommunityIcons
                             name="heart"
-                            size={36}
+                            size={32}
                             color="red"
                             onPress={removeFavoriteHandler}
                         />
                     ) : (
                         <MaterialCommunityIcons
                             name="heart-outline"
-                            size={36}
-                            color="red"
+                            size={32}
+                            color="black"
                             onPress={addToFavoriteHandler}
                         />
                     )}
@@ -82,6 +86,7 @@ const styles = StyleSheet.create({
         overflow: "hidden",
         borderRadius: 12,
         elevation: 2,
+        position: "relative",
     },
     pressed: {
         opacity: 0.5,
@@ -105,9 +110,21 @@ const styles = StyleSheet.create({
         color: Colors.primary100,
         fontStyle: "italic",
     },
-    buttons: {
-        flexDirection: "row",
-        justifyContent: "space-around",
-        marginTop: 12,
+    favContainer: {
+        position: "absolute",
+        right: 0,
+        top: 0,
+        backgroundColor: "#d8d8d8",
+        justifyContent: "center",
+        alignItems: "center",
+        opacity: 0.75,
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+    },
+    cartContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop:12,
     },
 });
