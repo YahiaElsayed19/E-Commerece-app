@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import { useQuery } from "react-query";
 import Product from "../components/products/Product";
@@ -7,8 +7,17 @@ import { AuthContext } from "../store/auth-context";
 import { getCart } from "../util/products";
 import { useIsFocused } from "@react-navigation/native";
 import Colors from "../constants/Colors";
+import Button from "../components/UI/Button";
+import PaymentModal from "../components/cart/PaymentModal";
 
 function CartScreen() {
+    const [showModal, setShowModal] = useState(false)
+    function onCheckout() {
+        setShowModal(true)
+    }
+    function onCancelHandler() {
+        setShowModal(false)
+    }
     const isFocused = useIsFocused();
     const authCtx = useContext(AuthContext);
     const { data, isLoading, refetch, isRefetching } = useQuery(
@@ -62,7 +71,11 @@ function CartScreen() {
                     keyExtractor={(item) => item.id}
                     renderItem={renderProduct}
                 />
+                <View style={styles.button}>
+                    <Button title="Checkout now" style={{ marginTop: 0 }} onPress={onCheckout} />
+                </View>
             </View>
+            {showModal && <PaymentModal isVisible={showModal} onCancel={onCancelHandler}/>}
         </View>
     );
 }
@@ -70,20 +83,24 @@ function CartScreen() {
 export default CartScreen;
 const styles = StyleSheet.create({
     totalContainer: {
-        backgroundColor:"white",
-        padding:12,
-        margin:12,
-        borderRadius:6,
-        flexDirection:"row",
-        justifyContent:"space-between",
-        elevation:2,
+        backgroundColor: "white",
+        padding: 12,
+        margin: 12,
+        borderRadius: 6,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        elevation: 2,
     },
     title: {
-        color:Colors.primary100,
-        fontWeight:"bold",
-        fontSize:18,
+        color: Colors.primary100,
+        fontWeight: "bold",
+        fontSize: 18,
     },
     total: {
-        fontSize:18,
+        fontSize: 18,
+    },
+    button: {
+        marginHorizontal: 30,
+        marginVertical: 10,
     },
 });

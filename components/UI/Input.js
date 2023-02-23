@@ -17,7 +17,7 @@ function Input({
                 <Text style={styles.label}>{label}</Text>
             </View>
             <TextInput
-                style={[styles.textInput,style]}
+                style={[styles.textInput, style]}
                 placeholder={placeholder}
                 cursorColor={Colors.primary100}
                 onChangeText={onChangeText}
