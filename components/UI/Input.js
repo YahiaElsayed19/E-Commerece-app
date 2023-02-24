@@ -9,10 +9,12 @@ function Input({
     secureTextEntry,
     keyboardType,
     value,
-    style
+    autoFocus,
+    style,
+    containerStyle
 }) {
     return (
-        <View style={styles.inputContainer}>
+        <View style={[styles.inputContainer,containerStyle]}>
             <View>
                 <Text style={styles.label}>{label}</Text>
             </View>
@@ -26,6 +28,7 @@ function Input({
                 secureTextEntry={secureTextEntry}
                 keyboardType={keyboardType}
                 defaultValue={value}
+                autoFocus={autoFocus}
             />
         </View>
     );
