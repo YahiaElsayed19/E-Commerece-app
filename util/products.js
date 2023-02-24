@@ -52,9 +52,6 @@ export const toggleCart = function (Authorization, productId) {
                 lang: "en",
             },
         },
-        {
-            product_id: productId,
-        }
     );
     return response;
 };
