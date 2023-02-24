@@ -1,6 +1,6 @@
 # E-Commerece-app
 
-### It's a complete E-commerce application
+### It's a complete functional E-commerce application
 
 ### built using:
 
