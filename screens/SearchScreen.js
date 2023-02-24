@@ -26,7 +26,7 @@ function SearchScreen() {
         return <Product product={itemData.item} />;
     }
     return (
-        <View>
+        <>
             <Input
                 autoFocus={true}
                 style={styles.input}
@@ -44,7 +44,7 @@ function SearchScreen() {
                     renderItem={renderProduct}
                 />
             )}
-        </View>
+        </>
     );
 }
 

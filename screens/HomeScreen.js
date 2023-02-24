@@ -22,31 +22,6 @@ function HomeScreen({ navigation }) {
   }, [isFocused]);
   const products = data?.data.data.data;
   // console.log(products);
-  if (isLoading) {
-    return (
-      <>
-        <Input
-          style={styles.input}
-          containerStyle={styles.inputContainer}
-          placeholder="search"
-          onFocus={onFocusSearch}
-        />
-        <LoadingOverlay />
-      </>
-    );
-  }
-  if (isRefetching) {
-    return (
-      <>
-        <Input
-          style={styles.input}
-          containerStyle={styles.inputContainer}
-          placeholder="search"
-          onFocus={onFocusSearch}
-        />
-        <LoadingOverlay />
-      </>
-    );  }
   function onFocusSearch() {
     navigation.navigate("SearchScreen");
   }
@@ -54,20 +29,24 @@ function HomeScreen({ navigation }) {
     return <Product product={itemData.item} />;
   }
   return (
-    <View>
+    <>
       <Input
         style={styles.input}
         containerStyle={styles.inputContainer}
         placeholder="search"
         onFocus={onFocusSearch}
       />
-      <FlatList
-        data={products}
-        numColumns={2}
-        keyExtractor={(item) => item.id}
-        renderItem={renderProduct}
-      />
-    </View>
+      {isLoading || isRefetching ? (
+        <LoadingOverlay />
+      ) : (
+        <FlatList
+          data={products}
+          numColumns={2}
+          keyExtractor={(item) => item.id}
+          renderItem={renderProduct}
+        />
+      )}
+    </>
   );
 }
 
