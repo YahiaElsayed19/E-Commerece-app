@@ -10,12 +10,12 @@ import LoadingOverlay from "../components/UI/LoadingOverlay";
 
 function SearchScreen() {
     const [searchText, setSearchText] = useState("");
-    const [deboucedSearchText] = useDebounce(searchText, 1000);
+    const [deboucedSearchText] = useDebounce(searchText, 500);
     function changeSearchTextHandler(enteredText) {
         setSearchText(enteredText);
     }
     const authCtx = useContext(AuthContext);
-    const { data, isLoading, refetch, isRefetching } = useQuery(
+    const { data, isLoading, refetch, isRefetching,remove } = useQuery(
         "searchRequest",
 
         () => {
@@ -25,6 +25,7 @@ function SearchScreen() {
         }
     );
     useEffect(() => {
+        remove();
         refetch();
     }, [deboucedSearchText]);
     const searchResults = data?.data.data.data;
