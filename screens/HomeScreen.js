@@ -13,16 +13,17 @@ function HomeScreen({ navigation }) {
   const isFocused = useIsFocused();
   const authCtx = useContext(AuthContext);
   const catCtx = useContext(CatContext);
-  const { data, isLoading, refetch, isRefetching } = useQuery(
+  const { data, isLoading, refetch, isRefetching, remove } = useQuery(
     "GetProducts",
-    () => getProducts(authCtx.idToken,catCtx.category)
+    () => getProducts(authCtx.idToken, catCtx.category)
   );
   // console.log(data.data.data.data[0]);
   useEffect(() => {
     if (isFocused) {
+      remove()
       refetch();
     }
-  }, [isFocused,catCtx.category]);
+  }, [isFocused, catCtx.category]);
   const products = data?.data.data.data;
   // console.log(products);
   function onFocusSearch() {
