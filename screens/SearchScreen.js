@@ -9,18 +9,23 @@ import { useDebounce } from "use-debounce";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
 
 function SearchScreen() {
-    const [searchText, setSearchText] = useState();
+    const [searchText, setSearchText] = useState("");
     const [deboucedSearchText] = useDebounce(searchText, 500);
     function changeSearchTextHandler(enteredText) {
         setSearchText(enteredText);
     }
     const authCtx = useContext(AuthContext);
-    const { data, isLoading, refetch,isRefetching } = useQuery("searchRequest", () =>
-        getSearchData(authCtx.idToken, deboucedSearchText)
+    const { data, isLoading, refetch, isRefetching } = useQuery(
+        "searchRequest",
+
+        () => {
+            if (deboucedSearchText !== "") {
+                return getSearchData(authCtx.idToken, deboucedSearchText) }
+        }
     );
     useEffect(() => {
-        refetch()
-    }, [deboucedSearchText])
+        refetch();
+    }, [deboucedSearchText]);
     const searchResults = data?.data.data.data;
     function renderProduct(itemData) {
         return <Product product={itemData.item} />;
@@ -34,7 +39,7 @@ function SearchScreen() {
                 placeholder="search"
                 onChangeText={changeSearchTextHandler}
             />
-            {isLoading ||isRefetching? (
+            {isLoading || isRefetching ? (
                 <LoadingOverlay />
             ) : (
                 <FlatList
