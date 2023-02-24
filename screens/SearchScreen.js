@@ -10,7 +10,7 @@ import LoadingOverlay from "../components/UI/LoadingOverlay";
 
 function SearchScreen() {
     const [searchText, setSearchText] = useState("");
-    const [deboucedSearchText] = useDebounce(searchText, 500);
+    const [deboucedSearchText] = useDebounce(searchText, 1000);
     function changeSearchTextHandler(enteredText) {
         setSearchText(enteredText);
     }
