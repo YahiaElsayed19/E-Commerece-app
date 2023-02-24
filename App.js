@@ -10,6 +10,7 @@ import SignupScreen from "./screens/SignupScreen";
 import SigninScreen from "./screens/SigninScreen";
 import AuthProvider from "./store/auth-context";
 import { AuthContext } from "./store/auth-context";
+import CatProvider from "./store/cat-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppLoading from "expo-app-loading";
 import ProfileScreen from "./screens/ProfileScreen";
@@ -143,10 +144,12 @@ function Root() {
 export default function App() {
   return (
     <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <StatusBar style="dark" />
-        <Root />
-      </QueryClientProvider>
+      <CatProvider>
+        <QueryClientProvider client={queryClient}>
+          <StatusBar style="dark" />
+          <Root />
+        </QueryClientProvider>
+      </CatProvider>
     </AuthProvider>
   );
 }
