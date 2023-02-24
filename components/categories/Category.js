@@ -2,15 +2,21 @@ import { useContext } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import Colors from "../../constants/Colors";
 import { CatContext } from "../../store/cat-context";
-function Category({ category, style }) {
+function Category({ category }) {
     const catCtx = useContext(CatContext)
     function onPressHandler() {
         catCtx.setCategory(category.id)
     }
+    const activeStyle = {
+        backgroundColor: Colors.primary100,
+    }
+    const activeColor = {
+        color: "white"
+    }
     return (
-        <Pressable onPress={onPressHandler} style={({ pressed }) => [styles.container, pressed && styles.pressed, style]}>
+        <Pressable onPress={onPressHandler} style={({ pressed }) => [styles.container, pressed && styles.pressed, catCtx.category === category.id && activeStyle]}>
             <View>
-                <Text style={[styles.Text]}>{category.name}</Text>
+                <Text style={[styles.Text, catCtx.category === category.id && activeColor]}>{category.name}</Text>
             </View>
         </Pressable>
     );
@@ -37,7 +43,8 @@ const styles = StyleSheet.create({
     },
     Text: {
         fontWeight: "bold",
-        color: "black",
+        color: Colors.primary100,
         fontStyle: "italic",
     },
+
 });
