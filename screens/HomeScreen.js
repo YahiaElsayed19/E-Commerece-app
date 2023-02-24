@@ -8,33 +8,65 @@ import { getProducts } from "../util/products";
 import { useIsFocused } from "@react-navigation/native";
 import Input from "../components/UI/Input";
 function HomeScreen({ navigation }) {
-  const isFocused = useIsFocused()
-  const authCtx = useContext(AuthContext)
-  const { data, isLoading, refetch, isRefetching } = useQuery("GetProducts", () => getProducts(authCtx.idToken));
+  const isFocused = useIsFocused();
+  const authCtx = useContext(AuthContext);
+  const { data, isLoading, refetch, isRefetching } = useQuery(
+    "GetProducts",
+    () => getProducts(authCtx.idToken)
+  );
   // console.log(data.data.data.data[0]);
   useEffect(() => {
     if (isFocused) {
-      refetch()
+      refetch();
     }
-  }, [isFocused])
+  }, [isFocused]);
   const products = data?.data.data.data;
   // console.log(products);
   if (isLoading) {
-    return <LoadingOverlay />
+    return (
+      <>
+        <Input
+          style={styles.input}
+          containerStyle={styles.inputContainer}
+          placeholder="search"
+          onFocus={onFocusSearch}
+        />
+        <LoadingOverlay />
+      </>
+    );
   }
   if (isRefetching) {
-    return <LoadingOverlay />
-  }
+    return (
+      <>
+        <Input
+          style={styles.input}
+          containerStyle={styles.inputContainer}
+          placeholder="search"
+          onFocus={onFocusSearch}
+        />
+        <LoadingOverlay />
+      </>
+    );  }
   function onFocusSearch() {
-    navigation.navigate("SearchScreen")
+    navigation.navigate("SearchScreen");
   }
   function renderProduct(itemData) {
-    return <Product product={itemData.item} />
+    return <Product product={itemData.item} />;
   }
   return (
     <View>
-      <Input style={styles.input} containerStyle={styles.inputContainer} placeholder="search" onFocus={onFocusSearch}/>
-      <FlatList data={products} numColumns={2} keyExtractor={(item) => item.id} renderItem={renderProduct} />
+      <Input
+        style={styles.input}
+        containerStyle={styles.inputContainer}
+        placeholder="search"
+        onFocus={onFocusSearch}
+      />
+      <FlatList
+        data={products}
+        numColumns={2}
+        keyExtractor={(item) => item.id}
+        renderItem={renderProduct}
+      />
     </View>
   );
 }
@@ -50,4 +82,4 @@ const styles = StyleSheet.create({
     marginTop: 0,
     backgroundColor: "white",
   },
-})
+});
