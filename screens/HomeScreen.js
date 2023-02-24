@@ -7,6 +7,7 @@ import { AuthContext } from "../store/auth-context";
 import { getProducts } from "../util/products";
 import { useIsFocused } from "@react-navigation/native";
 import Input from "../components/UI/Input";
+import Categories from "../components/categories/Categories";
 function HomeScreen({ navigation }) {
   const isFocused = useIsFocused();
   const authCtx = useContext(AuthContext);
@@ -36,6 +37,7 @@ function HomeScreen({ navigation }) {
         placeholder="search"
         onFocus={onFocusSearch}
       />
+      <Categories />
       {isLoading || isRefetching ? (
         <LoadingOverlay />
       ) : (
@@ -60,6 +62,6 @@ const styles = StyleSheet.create({
   input: {
     marginTop: 0,
     backgroundColor: "white",
-    elevation:2,
+    elevation: 2,
   },
 });
