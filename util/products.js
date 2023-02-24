@@ -2,17 +2,7 @@ import axios from "axios";
 
 const baseURL = "https://student.valuxapps.com/api/";
 
-export const getProducts = function (Authorization) {
-    const response = axios.get(`${baseURL}products?category_id`, {
-        headers: {
-            lang: "en",
-            Authorization: Authorization,
-        },
-    });
-    return response;
-};
-
-export const getCategory = function (Authorization, category_id) {
+export const getProducts = function (Authorization,category_id) {
     const response = axios.get(`${baseURL}products?category_id`, {
         headers: {
             lang: "en",
@@ -24,6 +14,7 @@ export const getCategory = function (Authorization, category_id) {
     });
     return response;
 };
+
 
 export const toggleFav = function (Authorization, productId) {
     const response = axios.post(

@@ -4,7 +4,7 @@ import Colors from "../../constants/Colors";
 import Category from "./Category";
 const CATEGORIES = [
     {
-        name: "all",
+        name: "All",
         id:"",
     },
     {
@@ -45,5 +45,6 @@ const styles = StyleSheet.create({
     categoris: {
         marginHorizontal: 15,
         marginBottom: 10,
+        maxHeight:45,
     },
 });
