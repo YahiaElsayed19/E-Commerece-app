@@ -2,16 +2,40 @@ import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import Colors from "../../constants/Colors";
 import Category from "./Category";
-
-function categories({ onPress }) {
+const CATEGORIES = [
+    {
+        name: "all",
+        id:"",
+    },
+    {
+        name: "Electronic",
+        id: 44
+    },
+    {
+        name: "Corona",
+        id: 43
+    },
+    {
+        name: "Sports",
+        id: 42
+    },
+    {
+        name: "Lighting",
+        id: 40
+    },
+    {
+        name: "Clothes",
+        id: 46
+    },
+];
+function categories() {
     return (
-        <ScrollView style={styles.categoris} horizontal={true} showsHorizontalScrollIndicator={false}>
-            <Category category="All" />
-            <Category category="Electrionic" />
-            <Category category="Corona" />
-            <Category category="Sports" />
-            <Category category="Lighting" />
-            <Category category="Clothes" />
+        <ScrollView
+            style={styles.categoris}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+        >
+            {CATEGORIES.map((category) => <Category key={category.id} category={category} />)}
         </ScrollView>
     );
 }

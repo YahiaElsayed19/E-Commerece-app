@@ -1,10 +1,16 @@
+import { useContext } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import Colors from "../../constants/Colors";
-function Category({ category, onPress, style }) {
+import { CatContext } from "../../store/cat-context";
+function Category({ category, style }) {
+    const catCtx = useContext(CatContext)
+    function onPressHandler() {
+        catCtx.setCategory(category.id)
+    }
     return (
-        <Pressable onPress={onPress} style={({ pressed }) => [styles.container, pressed && styles.pressed, style]}>
+        <Pressable onPress={onPressHandler} style={({ pressed }) => [styles.container, pressed && styles.pressed, style]}>
             <View>
-                <Text style={[styles.Text]}>{category}</Text>
+                <Text style={[styles.Text]}>{category.name}</Text>
             </View>
         </Pressable>
     );
