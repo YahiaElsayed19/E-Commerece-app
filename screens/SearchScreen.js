@@ -64,5 +64,6 @@ const styles = StyleSheet.create({
     input: {
         marginTop: 0,
         backgroundColor: "white",
+        elevation:2,
     },
 });
