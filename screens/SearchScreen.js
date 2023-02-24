@@ -19,8 +19,9 @@ function SearchScreen() {
         "searchRequest",
 
         () => {
-            if (deboucedSearchText !== "") {
-                return getSearchData(authCtx.idToken, deboucedSearchText) }
+            if (deboucedSearchText.trim("").length !== 0) {
+                return getSearchData(authCtx.idToken, deboucedSearchText)
+            }
         }
     );
     useEffect(() => {
